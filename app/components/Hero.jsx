@@ -3,19 +3,18 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Flashcard SaaS', href: '#' },
+  { name: 'What it does', href: '#' },
 ]
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-green-50">
+    <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
@@ -46,9 +45,17 @@ export default function Hero() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            <SignedOut>
+                <a href="#" className="text-sm font-semibold leading-6 text-gray-900 pr-4">
+                Log in <span aria-hidden="true">&rarr;</span>
+                </a>
+                <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Sign Up
+                </a>
+            </SignedOut>
+            <SignedIn>
+                <UserButton />
+            </SignedIn>
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -124,7 +131,7 @@ export default function Hero() {
           </div>
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Data to enrich your online business
+              Making flashcards have never been easier
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
