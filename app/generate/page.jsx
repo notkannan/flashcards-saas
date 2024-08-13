@@ -1,11 +1,14 @@
 'use client'
 
 import { useUser } from "@clerk/nextjs"
-import { collection } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { db } from "@/firebase"
 import TextInput from "../components/TextInput"
 import Navbar from "../components/Navbar"
+import Flashcards from "../components/Flashcards"
+import { doc, setDoc, getDoc, writeBatch } from 'firebase/firestore'
+import { collection } from "firebase/firestore"
 
 export default function Generate() {
 
@@ -23,7 +26,7 @@ export default function Generate() {
             body: 'text',
         })
         .then((res) => res.json())
-        .then(data => setFlashcards(data)) // Possible Syntax Error
+        .then((data) => setFlashcards(data)) // Possible Syntax Error
         
     }
 
@@ -80,6 +83,7 @@ export default function Generate() {
     <div className="w-screen h-screen bg-pink-200">
         <Navbar />
         <div className="w-[80vw] fixed bottom-[3%] left-[10%]">
+            
             <TextInput 
                 handleChange={(e) => setText(e.target.value)}
                 SubmitContent={handleSubmit}
@@ -89,3 +93,5 @@ export default function Generate() {
 
   )
 }
+
+
