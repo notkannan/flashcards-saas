@@ -8,6 +8,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 const navigation = [
   { name: 'Flashcard SaaS', href: '#' },
   { name: 'What it does', href: '#' },
+  { name: 'Pricing', href: '#' }
 ]
 
 export default function Hero() {
@@ -46,10 +47,10 @@ export default function Hero() {
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <SignedOut>
-                <a href="#" className="text-sm font-semibold leading-6 text-gray-900 pr-4">
+                <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 pr-4">
                 Log in <span aria-hidden="true">&rarr;</span>
                 </a>
-                <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                <a href="/sign-up" className="text-sm font-semibold leading-6 text-gray-900">
                 Sign Up
                 </a>
             </SignedOut>
