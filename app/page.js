@@ -7,7 +7,7 @@ import PricingSection from "./components/PricingOption";
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen bg-white">
+    <div className="w-screen h-screen bg-slate-200">
       <Hero />
       <Pricing />
     </div>

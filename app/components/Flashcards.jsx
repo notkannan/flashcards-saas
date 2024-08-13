@@ -1,7 +1,7 @@
-import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardActionArea, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, Textfield, DialogActions, Button } from '@mui/material'
 import React from 'react'
 
-export default function Flashcards({flashcards, flipped, handleCardClick}) {
+export default function Flashcards({flashcards, flipped, name, handleCardClick, handleNameChange, handleClose, handleOpen, saveFlashcards}) {
   return (
     <div>
         {flashcards.length > 0 && (
@@ -43,13 +43,12 @@ export default function Flashcards({flashcards, flipped, handleCardClick}) {
                                             },
                                         }}
                                         >
-
                                             <div>
                                                 <div>
-                                                    <Typography variant='h5' component='div'>{data.front}</Typography>
+                                                    <Typography variant='h5' component='div'>{flashcards.front}</Typography>
                                                 </div>
                                                 <div>
-                                                    <Typography variant='h5' component='div'>{data.back}</Typography>
+                                                    <Typography variant='h5' component='div'>{flashcards.back}</Typography>
                                                 </div>
                                             </div>
                                         </Box>
@@ -59,8 +58,35 @@ export default function Flashcards({flashcards, flipped, handleCardClick}) {
                         </Grid>
                     })}
                 </Grid>
+                <Box sx={{mt: 4, display: 'flex', justifyContent: 'center'}}>
+                    <Button variant="contained" colors="secondary" onClick={handleOpen}>
+                        Save
+                    </Button>
+                </Box>
             </Box>
         )}
+
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>Save Flashcards</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Please enter a name for your flashcards collection
+                </DialogContentText>
+                <Textfield 
+                    autofocus 
+                    margin='dense' 
+                    label='Collection Name' 
+                    type='text'
+                    fullWidth
+                    value={name}
+                    onChange={handleNameChange} 
+                    variant='outlined' />
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={saveFlashcards}>Save</Button>
+            </DialogActions>
+        </Dialog>
     </div>
   )
 }
