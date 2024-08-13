@@ -93,7 +93,7 @@ export default function Generate() {
     }   
 
   return (
-    <div className="w-screen h-screen bg-emerald-700">
+    <div className="w-screen h-screen bg-slate-200">
         <Navbar />
         {/* <input type="text" id="textInput" placeholder="Enter your text here" value={text} onChange={(e)=> setText(e.target.value)} />
         <button type="button" onClick={handleSubmit}>Submit</button> */}
