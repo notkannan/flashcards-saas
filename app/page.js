@@ -32,7 +32,6 @@ export default function Home() {
   if (error) {
     console.warn(error.message)
   }
-
   }
 
   return (
