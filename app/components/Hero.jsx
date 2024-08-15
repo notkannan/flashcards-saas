@@ -4,17 +4,20 @@ import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
 import Link from 'next/link';
 import logo from '@/public/logo.png'
 
 const navigation = [
-  { name: 'Flashcard SaaS', href: '#' },
-  { name: 'What it does', href: '#' },
-  { name: 'Pricing', href: '#pricing' }
+  { name: 'Create', href: '/generate' },
+  { name: 'About', href: '/about' },
+  { name: 'Pricing', href: '#pricing' },
+
 ]
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
 
   return (
     <div className="bg-slate-200">
@@ -130,13 +133,12 @@ export default function Hero() {
               Making flashcards have never been easier
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat fugiat aliqua.
+              With <span className='text-orange-600'> Card Flix</span>, forget the hassle of memorizing — let AI handle the hard work so you can focus on acing your studies effortlessly.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/generate"
-                className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Get started
               </Link>
