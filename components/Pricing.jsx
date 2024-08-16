@@ -7,7 +7,7 @@ const includedFeatures = [
 
 export default function Pricing({buySubscription}) {
   return (
-    <div id='pricing' className="bg-slate-100 py-24 sm:py-32">
+    <div id='pricing' className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple no-tricks pricing</h2>
@@ -25,7 +25,7 @@ export default function Pricing({buySubscription}) {
             </p>
             <div className="mt-10 flex items-center gap-x-4">
               <h4 className="flex-none text-sm font-semibold leading-6 text-orange-500">What’s included</h4>
-              <div className="h-px flex-auto bg-gray-100" />
+              <div className="h-px flex-auto bg-primary" />
             </div>
             <ul
               role="list"
@@ -40,7 +40,7 @@ export default function Pricing({buySubscription}) {
             </ul>
           </div>
           <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-            <div className="rounded-2xl bg-slate-800 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+            <div className="rounded-2xl bg-slate-900 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-slate-100">Pay once, own it forever</p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">

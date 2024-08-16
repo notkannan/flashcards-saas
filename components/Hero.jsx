@@ -21,7 +21,7 @@ export default function Hero() {
 
 
   return (
-    <div className="bg-slate-100">
+    <div className="bg-background">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
@@ -38,7 +38,7 @@ export default function Hero() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-text"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -46,17 +46,17 @@ export default function Hero() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-text">
                 {item.name}
               </a>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <SignedOut>
-                <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 pr-4">
+                <a href="/login" className="text-sm font-semibold leading-6 text-text pr-4">
                 Log in <span aria-hidden="true">&rarr;</span>
                 </a>
-                <a href="/sign-up" className="text-sm font-semibold leading-6 text-gray-900">
+                <a href="/sign-up" className="text-sm font-semibold leading-6 text-text">
                 Sign Up
                 </a>
             </SignedOut>
@@ -80,7 +80,7 @@ export default function Hero() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                className="-m-2.5 rounded-md p-2.5 text-text"
               >
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon aria-hidden="true" className="h-6 w-6" />
@@ -93,7 +93,7 @@ export default function Hero() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-text hover:bg-gray-50"
                     >
                       {item.name}
                     </a>
@@ -102,7 +102,7 @@ export default function Hero() {
                 <div className="py-6">
                   <a
                     href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-text hover:bg-gray-50"
                   >
                     Log in
                   </a>
@@ -130,20 +130,20 @@ export default function Hero() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-text sm:text-6xl">
               Making flashcards have never been easier
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              With <span className='text-orange-600'> Card Flix</span>, forget the hassle of memorizing — let AI handle the hard work so you can focus on acing your studies effortlessly.
+              With <span className='text-primary'> Card Flix</span>, forget the hassle of memorizing — let AI handle the hard work so you can focus on acing your studies effortlessly.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/generate"
-                className="rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Get started
               </Link>
-              <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link href="/about" className="text-sm font-semibold leading-6 text-text">
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>

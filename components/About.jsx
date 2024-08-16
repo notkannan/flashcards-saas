@@ -30,10 +30,10 @@ const features = [
 
 export default function About() {
   return (
-    <div className="bg-slate-100 py-24 sm:py-32">
+    <div className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-orange-500">We are Card Flix</h2>
+          <h2 className="text-base font-semibold leading-7 text-primary">We are Card Flix</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             What we offer
           </p>

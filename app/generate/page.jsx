@@ -144,7 +144,7 @@ export default function Generate() {
     }   
 
   return (
-    <div className="w-screen h-screen bg-slate-100">
+    <div className="w-screen h-screen bg-background">
         <Navbar />
         <Typography
             variant='h1' 

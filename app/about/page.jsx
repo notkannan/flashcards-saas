@@ -5,7 +5,7 @@ import SmallFooter from '../../components/Footer'
 
 export default function Page() {
   return (
-    <div className='bg-slate-200'>
+    <div className='bg-background'>
         <Navbar />
         <About />
         <SmallFooter />

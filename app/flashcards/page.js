@@ -42,18 +42,17 @@ export default function Flashcards() {
 
     return (
         <>
-        <div className="bg-slate-200 h-screen">
+        <div className="bg-background h-screen">
         <Navbar />
         <Container sx={{ mt: 10 }}>
             <Typography 
                 variant='h1' 
                 sx={{ 
                     textAlign: 'center',
-                    pt: 8, 
                     mb: 4, // Margin-bottom to add space below the heading
                     fontSize: '2.5rem', // Adjust font size as needed
                     color: '#333333', // Dark gray for readability
-                    fontWeight: 'bold'
+                    
                 }}
             >
                 Your Saved Collections
@@ -72,10 +71,14 @@ export default function Flashcards() {
             >
                 {flashcards.map((flashcard, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index} sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
-                        <Card sx={{ 
+                        <Card 
+                        onClick = {() => {
+                            handleCardClick(flashcard.name)
+                        }}
+                        sx={{ 
                             width: '300px', // Increased card width
                             height: '200px', // Set a specific height for better proportions
-                            backgroundColor: '#E2E8F0', 
+                            backgroundColor: '#fff', 
                             borderRadius: '24px',
                             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
                             transition: 'transform 0.3s', 
@@ -87,19 +90,19 @@ export default function Flashcards() {
                                 transform: 'scale(1.05)', 
                                 boxShadow: '0 6px 12px rgba(0, 0, 0, 0.2)',
                                 cursor: 'pointer'
-                            }
+                            },
                         }}>
                             <CardActionArea
-                                onClick={() => {
-                                    handleCardClick(flashcard.name)
-                                }}
+                                // onClick={() => {
+                                //     handleCardClick(flashcard.name)
+                                // }}
                             >
                                 <CardContent sx={{ textAlign: 'center' }}>
                                     <Typography 
                                         variant='h6' 
                                         sx={{ 
                                             color: '#1E293B', // Dark gray for readability
-                                            fontWeight: 'bold'
+                                            
                                         }}
                                     >
                                         {flashcard.name}

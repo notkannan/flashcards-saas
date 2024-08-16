@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation"
 import { Container, Grid } from "@mui/material"
 import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
+import SmallFooter from "@/components/Footer"
 
 export default function Flashcard() {
     const {isLoaded, isSignedIn, user} = useUser();
@@ -47,14 +48,13 @@ export default function Flashcard() {
         return <></>
     }
     return (
-        <div className="h-screen bg-slate-200">
+        <><div className="h-screen bg-background">
             <Navbar />
-            <FlashcardsList 
+            <FlashcardsList
                 flashcards={flashcards}
                 flipped={flipped}
                 handleCardClick={handleCardClick}
-                className="p-4 pt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-max"
-            />
-        </div>
+                className="p-4 pt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-max" />
+        </div><SmallFooter /></>
     )
 }

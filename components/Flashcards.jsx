@@ -9,7 +9,7 @@ const FlashcardsList = ({className, flashcards, handleCardClick, flipped, ...pro
           <Card key={index} onClick={() => handleCardClick(index)} className="h-[200px]">
             <CardContent className="h-full p-0" style={{perspective: '1000px'}}>
                 <div 
-                  className="relative w-full h-full rounded-lg bg-white" 
+                  className="relative w-full h-full rounded-lg bg-cards" 
                   style={{
                     transition: 'transform 0.6s',
                     transformStyle: 'preserve-3d',

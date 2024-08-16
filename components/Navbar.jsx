@@ -27,7 +27,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className='bg-slate-200'>
+    <div className='bg-background'>
     <header className="z-50">
     <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
       <div className="flex lg:flex-1">
@@ -44,7 +44,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
-          className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+          className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-text"
         >
           <span className="sr-only">Open main menu</span>
           <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -52,17 +52,17 @@ export default function Navbar() {
       </div>
       <div className="hidden lg:flex lg:gap-x-12">
         {navigation.map((item) => (
-          <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+          <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-text">
             {item.name}
           </a>
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <SignedOut>
-            <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 pr-4">
+            <a href="/login" className="text-sm font-semibold leading-6 text-text pr-4">
             Log in <span aria-hidden="true">&rarr;</span>
             </a>
-            <a href="/sign-up" className="text-sm font-semibold leading-6 text-gray-900">
+            <a href="/sign-up" className="text-sm font-semibold leading-6 text-text">
             Sign Up
             </a>
         </SignedOut>
@@ -86,7 +86,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}
-            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 rounded-md p-2.5 text-text"
           >
             <span className="sr-only">Close menu</span>
             <XMarkIcon aria-hidden="true" className="h-6 w-6" />
@@ -99,7 +99,7 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-text hover:bg-gray-50"
                 >
                   {item.name}
                 </a>
@@ -108,7 +108,7 @@ export default function Navbar() {
             <div className="py-6">
               <a
                 href="#"
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-text hover:bg-gray-50"
               >
                 Log in
               </a>
