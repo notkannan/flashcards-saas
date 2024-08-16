@@ -9,6 +9,8 @@ import Navbar from "../components/Navbar"
 import Flashcards from "../components/Flashcards"
 import { doc, setDoc, getDoc, writeBatch } from 'firebase/firestore'
 import { collection } from "firebase/firestore"
+import { CardStack } from "../components/ui/CardStack"
+import { cn } from "@/lib/utils"
 import { Grid, Box, Card, CardActionArea, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
 
 export default function Generate() {
@@ -20,6 +22,55 @@ export default function Generate() {
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
     const router = useRouter()
+
+    const Highlight = ({
+        children,
+        className,
+      }) => {
+        return (
+          <span
+            className={cn(
+              "font-bold bg-orange-100 text-orange-700 dark:bg-orange-700/[0.2] dark:text-orange-500 px-1 py-0.5",
+              className
+            )}
+          >
+            {children}
+          </span>
+        );
+      };
+       
+      const CARDS = [
+        {
+          id: 0,
+          name: "Flix Bot 🧠",
+          designation: "Your AI Assistant",
+          content: (
+            <p>
+              Let&apos;s get started! Enter the <Highlight>prompt below</Highlight> and get your flashcards in a moment ⚡️
+            </p>
+          ),
+        },
+        {
+          id: 1,
+          name: "Kaushik Manivannan",
+          designation: "Former Software Developer @ TCS",
+          content: (
+            <p>
+              I use these cards all the time, they are a lifesaver! <Highlight>Flashcards</Highlight> are the real deal man.
+            </p>
+          ),
+        },
+        {
+          id: 2,
+          name: "Kannan Karthikeyan",
+          designation: "Developer of Card Flix",
+          content: (
+            <p>
+              Enjoy creating flashcards using <Highlight>Card Flix</Highlight>! Ace your studies people 😇
+            </p>
+          ),
+        },
+    ]
 
     const handleSubmit = async () => {
         console.log('clicked')
@@ -93,12 +144,27 @@ export default function Generate() {
     }   
 
   return (
-    <div className="w-screen h-screen bg-slate-200">
+    <div className="w-screen h-screen bg-slate-100">
         <Navbar />
+        <Typography
+            variant='h1' 
+            sx={{ 
+                textAlign: 'center',
+                pt: 15, // Margin-bottom to add space below the heading
+                fontSize: '2.5rem', // Adjust font size as needed
+                color: '#333333', // Dark gray for readability
+                fontWeight: 'bold'
+            }}
+        >Send in a prompt to get started.</Typography>
         {/* <input type="text" id="textInput" placeholder="Enter your text here" value={text} onChange={(e)=> setText(e.target.value)} />
         <button type="button" onClick={handleSubmit}>Submit</button> */}
+        {flashcards.length == 0 && 
+            <div className="h-[400px] flex justify-center items-center">
+                <CardStack items={CARDS} />
+            </div>           
+        }
         {flashcards.length > 0 && (
-            <Box sx={{mt:4}}>
+            <Box sx={{mt:4, height:'100vh', bgcolor: '#F1F5F9'}}>
                 <Typography variant='h5'>Flashcards Preview</Typography>
                 <Grid container spacing={3}>
                     {flashcards.map((flashcard, index) => (

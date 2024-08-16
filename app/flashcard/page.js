@@ -5,10 +5,11 @@ import { useEffect } from "react"
 import { collection, doc, getDoc, getDocs } from "firebase/firestore"
 import { db } from "@/firebase"
 import { useState } from "react"
+import Navbar from "../components/Navbar"
 
 import { useSearchParams } from "next/navigation"
 import { Container, Grid } from "@mui/material"
-import { Box, Card, CardActionArea, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
+import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material'
 
 export default function Flashcard() {
     const {isLoaded, isSignedIn, user} = useUser();
@@ -44,16 +45,15 @@ export default function Flashcard() {
     if (!isLoaded || !isSignedIn){
         return <></>
     }
-
     return (
-        <Container maxWidth="100vw">
-            <Grid container spacing={3} sx={{mt: 4}}>
-                    {flashcards.map((flashcard, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            <Card>
-                                <CardActionArea onClick={() => handleCardClick(id)}>
-                                    <CardContent>
-                                        <Box
+        <div className="bg-slate-100"><Navbar /><Container maxWidth="100vw">
+            <Grid container spacing={3} sx={{ mt: 10, }}>
+                {flashcards.map((flashcard, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <Card>
+                            <CardActionArea onClick={() => handleCardClick(id)}>
+                                <CardContent>
+                                    <Box
                                         sx={{
                                             perspective: '1000px',
                                             '& > div': {
@@ -63,9 +63,10 @@ export default function Flashcard() {
                                                 width: '100%',
                                                 height: '200px',
                                                 boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+                                                borderRadius: 4,
                                                 transform: flipped[index]
-                                                ? 'rotateY(180deg)'
-                                                : 'rotateY(0deg)',
+                                                    ? 'rotateY(180deg)'
+                                                    : 'rotateY(0deg)',
                                             },
                                             '& > div > div': {
                                                 position: 'absolute',
@@ -82,22 +83,22 @@ export default function Flashcard() {
                                                 transform: 'rotateY(180deg)'
                                             },
                                         }}
-                                        >
+                                    >
+                                        <div>
                                             <div>
-                                                <div>
-                                                    <Typography variant='h5' component='div'>{flashcard.front}</Typography>
-                                                </div>
-                                                <div>
-                                                    <Typography variant='h5' component='div'>{flashcard.back}</Typography>
-                                                </div>
+                                                <Typography variant='h5' component='div'>{flashcard.front}</Typography>
                                             </div>
-                                        </Box>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-        </Container>
+                                            <div>
+                                                <Typography variant='h5' component='div'>{flashcard.back}</Typography>
+                                            </div>
+                                        </div>
+                                    </Box>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container></div>
     )
 }
