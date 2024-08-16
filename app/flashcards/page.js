@@ -42,7 +42,7 @@ export default function Flashcards() {
 
     return (
         <>
-        <div className="bg-slate-100 h-screen">
+        <div className="bg-slate-200 h-screen">
         <Navbar />
         <Container sx={{ mt: 10 }}>
             <Typography 

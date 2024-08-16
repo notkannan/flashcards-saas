@@ -27,7 +27,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className='bg-slate-100'>
+    <div className='bg-slate-200'>
     <header className="z-50">
     <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
       <div className="flex lg:flex-1">

@@ -5,11 +5,11 @@ import SmallFooter from '../../components/Footer'
 
 export default function Page() {
   return (
-    <>
+    <div className='bg-slate-200'>
         <Navbar />
         <About />
         <SmallFooter />
-    </>
+    </div>
     
   )
 }
