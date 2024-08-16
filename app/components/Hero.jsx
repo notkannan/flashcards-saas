@@ -9,9 +9,10 @@ import Link from 'next/link';
 import logo from '@/public/logo.png'
 
 const navigation = [
-  { name: 'Create', href: '/generate' },
   { name: 'About', href: '/about' },
   { name: 'Pricing', href: '#pricing' },
+  { name: 'Create', href: '/generate' },
+  { name: 'Collections', href: '/flashcards'},
 
 ]
 
@@ -20,7 +21,7 @@ export default function Hero() {
 
 
   return (
-    <div className="bg-slate-200">
+    <div className="bg-slate-100">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
@@ -142,9 +143,9 @@ export default function Hero() {
               >
                 Get started
               </Link>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

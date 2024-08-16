@@ -1,42 +1,43 @@
-import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import { CloudArrowUpIcon, CpuChipIcon, CheckIcon, PlusIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const features = [
   {
     name: 'Topics of your choice',
     description:
-      'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.',
-    icon: CloudArrowUpIcon,
+      'Our flashcard generator can handle any types of topics you desire.',
+    icon: CheckIcon,
   },
   {
     name: 'Generated within seconds',
     description:
-      'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.',
-    icon: LockClosedIcon,
+      'Send in your topic and wait for the flashcards to be generated in moments.',
+    icon: CpuChipIcon,
   },
   {
     name: 'Save your cards',
     description:
-      'Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.',
-    icon: ArrowPathIcon,
+      'Save the flashcards that works for you or even for fun!',
+    icon: CloudArrowUpIcon,
   },
   {
     name: 'Even more...',
     description:
-      'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
-    icon: FingerPrintIcon,
+      "You'd soon be able to share these flashcards and challenge your friends.",
+    icon: PlusIcon,
   },
 ]
 
 export default function About() {
   return (
-    <div className="bg-slate-200 py-24 sm:py-32">
+    <div className="bg-slate-100 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-orange-500">We are Card Flix</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             What we offer
           </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-lg leading-8 text-gray-600">
           Whether you're preparing for exams or mastering new skills, Card Flix simplifies the process, making studying both enjoyable and effective.
           </p>
         </div>

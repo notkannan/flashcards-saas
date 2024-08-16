@@ -1,15 +1,13 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
 
 const includedFeatures = [
-  'Private forum access',
-  'Member resources',
-  'Entry to annual conference',
-  'Official member t-shirt',
+  'Save your flashcards',
+  'Unlimited flashcard generations',
 ]
 
 export default function Pricing({buySubscription}) {
   return (
-    <div id='pricing' className="bg-slate-200 py-24 sm:py-32">
+    <div id='pricing' className="bg-slate-100 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple no-tricks pricing</h2>
@@ -42,12 +40,12 @@ export default function Pricing({buySubscription}) {
             </ul>
           </div>
           <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-            <div className="rounded-2xl bg-slate-100 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+            <div className="rounded-2xl bg-slate-800 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
               <div className="mx-auto max-w-xs px-8">
-                <p className="text-base font-semibold text-gray-600">Pay once, own it forever</p>
+                <p className="text-base font-semibold text-slate-100">Pay once, own it forever</p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-bold tracking-tight text-gray-900">$349</span>
-                  <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
+                  <span className="text-5xl font-bold tracking-tight text-slate-100">$5</span>
+                  <span className="text-sm font-semibold leading-6 tracking-wide text-slate-100">USD</span>
                 </p>
                 <button
                   onClick={buySubscription}
@@ -55,7 +53,7 @@ export default function Pricing({buySubscription}) {
                 >
                   Get access
                 </button>
-                <p className="mt-6 text-xs leading-5 text-gray-600">
+                <p className="mt-6 text-xs leading-5 text-slate-300">
                   Invoices and receipts available for easy company reimbursement
                 </p>
               </div>
