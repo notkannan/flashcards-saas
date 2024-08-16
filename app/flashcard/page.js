@@ -12,6 +12,7 @@ import { Container, Grid } from "@mui/material"
 import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
 import SmallFooter from "@/components/Footer"
+import Redirect from "@/components/Redirect"
 
 export default function Flashcard() {
     const {isLoaded, isSignedIn, user} = useUser();
@@ -45,7 +46,9 @@ export default function Flashcard() {
     }
 
     if (!isLoaded || !isSignedIn){
-        return <></>
+        return <>
+        <Redirect />
+        </>
     }
     return (
         <><div className="h-screen bg-background">

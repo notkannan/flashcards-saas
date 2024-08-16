@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import Navbar from "../../components/Navbar"
 import { Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material"
 import SmallFooter from "../../components/Footer"
+import Redirect from "@/components/Redirect"
 
 export default function Flashcards() {
     const {isLoaded, isSignedIn, user} = useUser();
@@ -33,7 +34,7 @@ export default function Flashcards() {
     }, [user])
 
     if (!isLoaded || !isSignedIn){
-        return <></>
+        return <><Redirect /></>
     }
 
     const handleCardClick = (id) => {
