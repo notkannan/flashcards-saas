@@ -4,12 +4,12 @@ import { useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { db } from "@/firebase"
-import TextInput from "../components/TextInput"
-import Navbar from "../components/Navbar"
-import Flashcards from "../components/Flashcards"
+import TextInput from "../../components/TextInput"
+import Navbar from "../../components/Navbar"
+import Flashcards from "../../components/Flashcards"
 import { doc, setDoc, getDoc, writeBatch } from 'firebase/firestore'
 import { collection } from "firebase/firestore"
-import { CardStack } from "../components/ui/CardStack"
+import { CardStack } from "../../components/ui/CardStack"
 import { cn } from "@/lib/utils"
 import { Grid, Box, Card, CardActionArea, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
 

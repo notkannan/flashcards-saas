@@ -3,10 +3,10 @@
 import Image from "next/image";
 import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Hero from './components/Hero';
-import Pricing from "./components/Pricing";
-import About from "./components/About";
-import SmallFooter from "./components/Footer";
+import Hero from '../components/Hero';
+import Pricing from "../components/Pricing";
+import About from "../components/About";
+import SmallFooter from "../components/Footer";
 
 export default function Home() {
 

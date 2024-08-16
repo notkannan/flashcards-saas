@@ -6,9 +6,9 @@ import { useEffect, useState } from "react"
 import { collection, doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "@/firebase"
 import { useRouter } from "next/navigation"
-import Navbar from "../components/Navbar"
+import Navbar from "../../components/Navbar"
 import { Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material"
-import SmallFooter from "../components/Footer"
+import SmallFooter from "../../components/Footer"
 
 export default function Flashcards() {
     const {isLoaded, isSignedIn, user} = useUser();
