@@ -2,14 +2,12 @@
 
 import { useUser } from "@clerk/nextjs"
 import { useEffect } from "react"
-import { collection, doc, getDoc, getDocs } from "firebase/firestore"
+import { collection, doc, getDocs } from "firebase/firestore"
 import { db } from "@/firebase"
 import { useState } from "react"
 import Navbar from "../../components/Navbar"
 
 import { useSearchParams } from "next/navigation"
-import { Container, Grid } from "@mui/material"
-import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
 import SmallFooter from "@/components/Footer"
 import Redirect from "@/components/Redirect"

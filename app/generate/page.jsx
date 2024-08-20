@@ -6,12 +6,11 @@ import { useState } from "react"
 import { db } from "@/firebase"
 import TextInput from "../../components/TextInput"
 import Navbar from "../../components/Navbar"
-import Flashcards from "../../components/Flashcards"
-import { doc, setDoc, getDoc, writeBatch } from 'firebase/firestore'
+import { doc, getDoc, writeBatch } from 'firebase/firestore'
 import { collection } from "firebase/firestore"
 import { CardStack } from "../../components/ui/CardStack"
 import { cn } from "@/lib/utils"
-import { Grid, Box, Card, CardActionArea, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
+import { Box, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
 
 export default function Generate() {
@@ -85,7 +84,6 @@ export default function Generate() {
     ]
 
     const handleSubmit = async () => {
-        console.log('clicked')
         fetch('/api/generate', {
             method: 'POST',
             body: text,
@@ -176,15 +174,16 @@ export default function Generate() {
             </div>           
         }
         <FlashcardsList
-                flashcards={flashcards}
-                flipped={flipped}
-                handleCardClick={handleCardClick}
-                className="p-4 pt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-max" />
+          flashcards={flashcards}
+          flipped={flipped}
+          handleCardClick={handleCardClick}
+          className="p-4 pt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-max" 
+        />
         
         {flashcards.length > 0 && <Box sx={{mt: 2, display: 'flex', justifyContent: 'center'}}>
-            <Button variant="contained" sx={{bgcolor:'#F97316', borderRadius: '12px', '&:hover': {bgcolor: '#EA580C'}}} onClick={handleOpen}>
-                Save
-            </Button>
+          <Button variant="contained" sx={{bgcolor:'#F97316', borderRadius: '12px', '&:hover': {bgcolor: '#EA580C'}}} onClick={handleOpen}>
+            Save
+          </Button>
         </Box>}
 
         <Dialog open={open} onClose={handleClose}>
