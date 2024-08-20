@@ -2,16 +2,17 @@
 
 import { useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { db } from "@/firebase"
 import TextInput from "../../components/TextInput"
 import Navbar from "../../components/Navbar"
-import { doc, getDoc, writeBatch } from 'firebase/firestore'
+import { doc, getDoc, setDoc, writeBatch } from 'firebase/firestore'
 import { collection } from "firebase/firestore"
 import { CardStack } from "../../components/ui/CardStack"
 import { cn } from "@/lib/utils"
 import { Box, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
+import Link from "next/link"
 
 export default function Generate() {
 
@@ -84,6 +85,25 @@ export default function Generate() {
     ]
 
     const handleSubmit = async () => {
+      try {
+        // Fetch the user's document
+        const userDocRef = doc(collection(db, 'users'), user.id);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (!userDocSnap.exists()) {
+            console.error('User document not found');
+            return;
+        }
+
+        // Get the current generation count and increment it
+        const userData = userDocSnap.data();
+        const currentCount = userData.generationCount || 0;
+        const newCount = currentCount + 1;
+
+        // Update the generationCount in the user's document
+        const batch = writeBatch(db);
+        batch.update(userDocRef, { generationCount: newCount });
+
         fetch('/api/generate', {
             method: 'POST',
             body: text,
@@ -91,8 +111,30 @@ export default function Generate() {
         .then((res) => res.json())
         .then((data) => {
             setFlashcards(data);
-            console.log(flashcards);
-        }) // Possible Syntax Error     
+        })  
+        await batch.commit()
+
+    }catch(err){
+      alert("Error generating flashcards")
+    }
+  }
+
+    const getUserGenerationCount = async (userId) => {
+        // Reference to the user's document
+        const userDocRef = doc(db, 'users', userId);
+
+        // Fetch the document
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (userDocSnap.exists()) {
+          // Get the document data
+          const userData = userDocSnap.data();
+
+          // Retrieve the generationCount field
+          const generationCount = userData.generationCount || 0; // Default to 0 if not set
+          return generationCount;
+      }
+      return
     }
 
     const handleNameChange = (event) => {
@@ -156,6 +198,8 @@ export default function Generate() {
   return (
     <div className="w-screen h-screen bg-background">
         <Navbar />
+        {getUserGenerationCount >= 3 ? 
+        <div>
         <Typography
             variant='h1' 
             sx={{ 
@@ -166,13 +210,48 @@ export default function Generate() {
                 fontWeight: 'bold'
             }}
         >Send in a prompt to get started.</Typography>
-        {/* <input type="text" id="textInput" placeholder="Enter your text here" value={text} onChange={(e)=> setText(e.target.value)} />
-        <button type="button" onClick={handleSubmit}>Submit</button> */}
         {flashcards.length == 0 && 
-            <div className="h-[400px] flex justify-center items-center">
-                <CardStack items={CARDS} />
-            </div>           
+          <div className="h-[400px] flex justify-center items-center">
+              <CardStack items={CARDS} />
+          </div>           
         }
+        </div>
+        :
+        <div className="flex flex-col gap-5 justify-center items-center">
+        <Typography
+            variant='h1' 
+            sx={{ 
+                textAlign: 'center',
+                pt: 20, // Margin-bottom to add space below the heading
+                fontSize: '2.5rem', // Adjust font size as needed
+                color: '#333333', // Dark gray for readability
+                fontWeight: 'bold',
+            }}
+        >Subscribe to generate more flashcards</Typography>
+        <Typography
+            variant='h6' 
+            sx={{ 
+                textAlign: 'center',
+                color: '#333333', // Dark gray for readability
+                fontWeight: 'light',
+            }}
+        >It's cheap, it's useful. Pay once and never worry about memorizing stuff again. <br />Card Flix has your back</Typography>
+          <div className="flex items-center gap-7">
+            <Link
+              href="/#pricing"
+              className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Subscribe
+            </Link>
+            <Link href="/about" className="text-sm font-semibold leading-6 text-text">
+              Learn more <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+        }
+
+
+
         <FlashcardsList
           flashcards={flashcards}
           flipped={flipped}
@@ -208,22 +287,14 @@ export default function Generate() {
                 <Button sx={{color:'#F97316', borderRadius: '12px', '&:hover': {bgcolor: '#FFEDD5'}}} onClick={saveFlashcards}>Save</Button>
             </DialogActions>
         </Dialog>
+        
         <div className="w-[80vw] fixed bottom-[3%] left-[10%]">
-            {/* <Flashcards
-                flashcards={flashcards}
-                flipped={flipped}
-                name={name}
-                handleCardClick={handleCardClick}
-                handleNameChange={handleNameChange}
-                handleOpen={handleOpen}
-                handleClose={handleClose}
-                saveFlashCards={saveFlashCards}
-            /> */}
             
             <TextInput 
                 content={text}
                 handleChange={handleTextChange}
                 submitContent={handleSubmit}
+                generationCount={getUserGenerationCount}
             />
         </div>
     </div>
