@@ -38,7 +38,7 @@ export default function About() {
             What we offer
           </p>
           <p className="mt-4 text-lg leading-8 text-gray-600">
-          Whether you're preparing for exams or mastering new skills, Card Flix simplifies the process, making studying both enjoyable and effective.
+          Whether you&apos;re preparing for exams or mastering new skills, Card Flix simplifies the process, making studying both enjoyable and effective.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">

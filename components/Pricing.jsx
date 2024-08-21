@@ -24,7 +24,7 @@ export default function Pricing({buySubscription}) {
               repellendus etur quidem assumenda.
             </p>
             <div className="mt-10 flex items-center gap-x-4">
-              <h4 className="flex-none text-sm font-semibold leading-6 text-orange-500">What’s included</h4>
+              <h4 className="flex-none text-sm font-semibold leading-6 text-orange-500">What&apos;s included</h4>
               <div className="h-px flex-auto bg-primary" />
             </div>
             <ul
@@ -44,7 +44,7 @@ export default function Pricing({buySubscription}) {
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-slate-100">Pay once, own it forever</p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-bold tracking-tight text-slate-100">$5</span>
+                  <span className="text-5xl font-bold tracking-tight text-slate-100">$3</span>
                   <span className="text-sm font-semibold leading-6 tracking-wide text-slate-100">USD</span>
                 </p>
                 <button
