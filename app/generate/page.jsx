@@ -227,7 +227,7 @@ export default function Generate() {
                 color: '#333333', // Dark gray for readability
                 fontWeight: 'bold',
             }}
-        >Subscribe to generate more flashcards</Typography>
+        >Subscribe to Card Flix Pro to generate more flashcards</Typography>
         <Typography
             variant='h6' 
             sx={{ 
@@ -235,7 +235,7 @@ export default function Generate() {
                 color: '#333333', // Dark gray for readability
                 fontWeight: 'light',
             }}
-        >It&apos;s cheap, it&apos;s useful. Pay once and never worry about memorizing stuff again. <br />Card Flix has your back</Typography>
+        >It&apos;s cheap, it&apos;s useful. Never worry about memorizing stuff again. <br />Card Flix has your back</Typography>
           <div className="flex items-center gap-7">
             <Link
               href="/#pricing"

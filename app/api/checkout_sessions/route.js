@@ -22,6 +22,7 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
+    const { userId } = await req.json();
     const params = {
         mode: 'subscription',
         payment_method_types: ['card'],
@@ -30,9 +31,9 @@ export async function POST(req) {
             price_data:{
                 currency: 'usd',
                 product_data: {
-                    name: 'Pro subscription',  
+                    name: 'Card Flix Pro',  
                 },
-                unit_amount: formatAmountForStripe(10),
+                unit_amount: formatAmountForStripe(2),
                 recurring: {
                     interval: 'month',
                     interval_count: 1
@@ -43,11 +44,11 @@ export async function POST(req) {
         ],
         success_url: `${req.headers.get('origin')}/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.get('origin')}/result?session_id={CHECKOUT_SESSION_ID}`,
+        client_reference_id: userId,
       };
       const checkoutSession = await stripe.checkout.sessions.create(params);
 
       return NextResponse.json(checkoutSession, {
         status: 200,
-      })
-    
+      })   
 }

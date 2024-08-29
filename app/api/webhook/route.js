@@ -1,61 +1,46 @@
-import { buffer } from 'micro'
-import Stripe from 'stripe'
-import { db } from "@/firebase"
-import { doc, updateDoc } from 'firebase/firestore'
+import { NextResponse } from "next/server";
+import Stripe from 'stripe';
+import { headers } from 'next/headers';
+import { db } from '@/firebase'; // Adjust this import based on your Firebase setup
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+export async function POST(req) {
+  const body = await req.text();
+  const signature = headers().get("Stripe-Signature");
 
-async function handler(req, res) {
-  if (req.method === 'POST') {
-    const buf = await buffer(req)
-    const sig = req.headers['stripe-signature']
+  let event;
 
-    let event
-
-    try {
-      event = stripe.webhooks.constructEvent(buf, sig, webhookSecret)
-    } catch (err) {
-      console.error(`Webhook Error: ${err.message}`)
-      return res.status(400).send(`Webhook Error: ${err.message}`)
-    }
-
-    // Handle the event
-    switch (event.type) {
-      case 'customer.subscription.created':
-        const subscription = event.data.object
-        // Update user data in Firestore
-        await updateUserPremiumStatus(subscription.customer, true)
-        break
-      default:
-        console.log(`Unhandled event type ${event.type}`)
-    }
-
-    res.json({ received: true })
-  } else {
-    res.setHeader('Allow', 'POST')
-    res.status(405).end('Method Not Allowed')
+  try {
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
   }
-}
 
-async function updateUserPremiumStatus(stripeCustomerId, isPremium) {
-  // You'll need to store the Stripe customer ID in your user document
-  // when creating the checkout session
-  const userQuery = query(collection(db, 'users'), where('stripeCustomerId', '==', stripeCustomerId))
-  const userSnapshot = await getDocs(userQuery)
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
 
-  if (!userSnapshot.empty) {
-    const userDoc = userSnapshot.docs[0]
-    await updateDoc(doc(db, 'users', userDoc.id), {
-      premium: isPremium
-    })
+    // Retrieve the user ID from the client_reference_id
+    const userId = session.client_reference_id;
+
+    if (userId) {
+      // Update the user's document in Firebase
+      const userRef = doc(db, 'users', userId);
+      
+      try {
+        await setDoc(userRef, { subscribed: 'Yes' }, { merge: true });
+        console.log(`Updated subscription status for user ${userId}`);
+      } catch (error) {
+        console.error(`Error updating user document: ${error}`);
+        return NextResponse.json({ error: 'Error updating user document' }, { status: 500 });
+      }
+    }
   }
-}
 
-export default handler
+  return NextResponse.json({ received: true });
+}

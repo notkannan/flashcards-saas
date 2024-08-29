@@ -42,10 +42,10 @@ export default function Pricing({buySubscription}) {
           <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
             <div className="rounded-2xl bg-slate-900 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
               <div className="mx-auto max-w-xs px-8">
-                <p className="text-base font-semibold text-slate-100">Pay once, own it forever</p>
+                <p className="text-base font-semibold text-slate-100">Affordable pricing, great value!</p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-bold tracking-tight text-slate-100">$3</span>
-                  <span className="text-sm font-semibold leading-6 tracking-wide text-slate-100">USD</span>
+                  <span className="text-5xl font-bold tracking-tight text-slate-100">$2</span>
+                  <span className="text-sm font-semibold leading-6 tracking-wide text-slate-100">USD / month</span>
                 </p>
                 <button
                   onClick={buySubscription}
