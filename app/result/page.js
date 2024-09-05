@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import getStripe from "@/utils/get-stripe"
 import { useSearchParams } from "next/navigation"
-import { Box, CircularProgress, Container, Typography } from "@mui/material"
+import { Box, CircularProgress, Container, Typography, Button } from "@mui/material"
 
 const ResultPage = () => {
     const router = useRouter()
@@ -63,6 +63,7 @@ const ResultPage = () => {
                     <Typography variant='body1'>
                         We have received your payment. You will receive an email with the order details shortly
                     </Typography>
+                    <Button href="/">Return to Home</Button>
                 </Box>
                 </>
             ):(

@@ -137,6 +137,26 @@ export default function Generate() {
       return
     }
 
+    const getUserSubscriptionStatus = async(userId) => {
+    try{  
+      const userDocRef = doc(db, 'users', userId);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        const isSubscribed = userData.subscribed === 'Yes';
+        return isSubscribed;
+      } else {
+      console.log("No such document!");
+      return false;
+      }
+    } catch (error) {
+      console.error("Error fetching user subscription status:", error);
+      throw error; // or handle the error as appropriate for your application
+    }
+      
+    }
+
     const handleNameChange = (event) => {
         setName(event.target.value);
         console.log(text)
@@ -198,6 +218,7 @@ export default function Generate() {
   return (
     <div className="w-screen h-screen bg-background">
         <Navbar />
+        {getUserSubscriptionStatus && <h1>You are Subscribed!</h1>}
         {getUserGenerationCount >= 3 ? 
         <div>
         <Typography
