@@ -22,6 +22,8 @@ export default function Generate() {
     const [text, setText] = useState('')
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
+    const [isSubscribed, setIsSubscribed] = useState(false)
+    const [generationCount, setGenerationCount] = useState(0)
     const router = useRouter()
 
     const style = {
@@ -83,6 +85,30 @@ export default function Generate() {
           ),
         },
     ]
+    useEffect(() => {
+      const createOrFetchUser = async () => {
+          if (user) {
+              const userDocRef = doc(db, 'users', user.id)
+              const userDocSnap = await getDoc(userDocRef)
+
+              if (!userDocSnap.exists()) {
+                  // User doesn't exist in Firebase, create a new document
+                  await setDoc(userDocRef, {
+                      generationCount: 0,
+                      subscribed: 'No'
+                  })
+                  setGenerationCount(0)
+                  setIsSubscribed(false)
+              } else {
+                  // User exists, fetch their data
+                  const userData = userDocSnap.data()
+                  setGenerationCount(userData.generationCount || 0)
+                  setIsSubscribed(userData.subscribed === 'Yes')
+              }
+          }
+      }
+      createOrFetchUser()
+  }, [user])
 
     const handleSubmit = async () => {
       try {
@@ -217,28 +243,26 @@ export default function Generate() {
 
   return (
     <div className="w-screen h-screen bg-background">
-        <Navbar />
-        {getUserSubscriptionStatus && <h1>You are Subscribed!</h1>}
-        {getUserGenerationCount >= 3 ? 
-        <div>
-        <Typography
-            variant='h1' 
-            sx={{ 
-                textAlign: 'center',
-                pt: 2, // Margin-bottom to add space below the heading
-                fontSize: '2.5rem', // Adjust font size as needed
-                color: '#333333', // Dark gray for readability
-                fontWeight: 'bold'
-            }}
-        >Send in a prompt to get started.</Typography>
-        {flashcards.length == 0 && 
-          <div className="h-[400px] flex justify-center items-center">
-              <CardStack items={CARDS} />
-          </div>           
-        }
-        </div>
-        :
-        <div className="flex flex-col gap-5 justify-center items-center">
+      <Navbar />
+      <div>
+      <Typography
+        variant='h1' 
+        sx={{ 
+          textAlign: 'center',
+          pt: 2, // Margin-bottom to add space below the heading
+          fontSize: '2.5rem', // Adjust font size as needed
+          color: '#333333', // Dark gray for readability
+          fontWeight: 'bold'
+        }}
+      >Send in a prompt to get started.</Typography>
+      {
+      flashcards.length == 0 && 
+      <div className="h-[400px] flex justify-center items-center">
+        <CardStack items={CARDS} />
+      </div>           
+      }
+    </div>
+        {/* <div className="flex flex-col gap-5 justify-center items-center">
         <Typography
             variant='h1' 
             sx={{ 
@@ -268,8 +292,7 @@ export default function Generate() {
               Learn more <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </div>
-        }
+        </div> */}
 
 
 
@@ -316,6 +339,7 @@ export default function Generate() {
                 handleChange={handleTextChange}
                 submitContent={handleSubmit}
                 generationCount={getUserGenerationCount}
+                userSubscription={getUserSubscriptionStatus}
             />
         </div>
     </div>
