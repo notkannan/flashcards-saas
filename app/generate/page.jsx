@@ -12,7 +12,6 @@ import { CardStack } from "../../components/ui/CardStack"
 import { cn } from "@/lib/utils"
 import { Box, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
-import Link from "next/link"
 
 export default function Generate() {
 
@@ -28,11 +27,11 @@ export default function Generate() {
 
     const style = {
         "& label.Mui-focused": {
-          color: "orange"
+          color: "red"
         },
         "& .MuiOutlinedInput-root": {
           "&.Mui-focused fieldset": {
-            borderColor: "orange"
+            borderColor: "red"
           }
         }
       }
@@ -44,7 +43,7 @@ export default function Generate() {
         return (
           <span
             className={cn(
-              "font-bold bg-orange-100 text-orange-700 dark:bg-orange-700/[0.2] dark:text-orange-500 px-1 py-0.5",
+              "font-bold bg-red-100 text-primary dark:bg-orange-700/[0.2] dark:text-primary px-1 py-0.5",
               className
             )}
           >
@@ -254,7 +253,7 @@ export default function Generate() {
           color: '#333333', // Dark gray for readability
           fontWeight: 'bold'
         }}
-      >Send in a prompt to get started.</Typography>
+      >Send in a&nbsp;<span className="bg-red-100 text-primary"> prompt </span>&nbsp;to get started.</Typography>
       {
       flashcards.length == 0 && 
       <div className="h-[400px] flex justify-center items-center">
@@ -304,7 +303,7 @@ export default function Generate() {
         />
         
         {flashcards.length > 0 && <Box sx={{mt: 2, display: 'flex', justifyContent: 'center'}}>
-          <Button variant="contained" sx={{bgcolor:'#F97316', borderRadius: '12px', '&:hover': {bgcolor: '#EA580C'}}} onClick={handleOpen}>
+          <Button variant="contained" sx={{bgcolor:'#D7263D', borderRadius: '12px', '&:hover': {bgcolor: '#9D1D30'}}} onClick={handleOpen}>
             Save
           </Button>
         </Box>}
@@ -327,8 +326,8 @@ export default function Generate() {
                     variant='outlined' />
             </DialogContent>
             <DialogActions>
-                <Button sx={{color:'#F97316', borderRadius: '12px', '&:hover': {bgcolor: '#FFEDD5'}}} onClick={handleClose}>Cancel</Button>
-                <Button sx={{color:'#F97316', borderRadius: '12px', '&:hover': {bgcolor: '#FFEDD5'}}} onClick={saveFlashcards}>Save</Button>
+                <Button sx={{color:'#D7263D', borderRadius: '12px', '&:hover': {bgcolor: '#f2f7f2'}}} onClick={handleClose}>Cancel</Button>
+                <Button sx={{color:'#D7263D', borderRadius: '12px', '&:hover': {bgcolor: '#f2f7f2'}}} onClick={saveFlashcards}>Save</Button>
             </DialogActions>
         </Dialog>
         

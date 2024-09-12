@@ -1,5 +1,4 @@
 import { CloudArrowUpIcon, CpuChipIcon, CheckIcon, PlusIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
 
 const features = [
   {
@@ -37,7 +36,7 @@ export default function About() {
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             What we offer
           </p>
-          <p className="mt-4 text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-lg leading-8 text-text">
           Whether you&apos;re preparing for exams or mastering new skills, Card Flix simplifies the process, making studying both enjoyable and effective.
           </p>
         </div>
@@ -45,8 +44,8 @@ export default function About() {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.name} className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500">
+                <dt className="text-base font-semibold leading-7 text-text">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
                     <feature.icon aria-hidden="true" className="h-6 w-6 text-white" />
                   </div>
                   {feature.name}

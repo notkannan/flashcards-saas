@@ -14,7 +14,7 @@ const SmallFooter = (props) => {
     "text-sm text-white transition-all duration-200 hover:text-opacity-80 focus:text-opacity-80 cursor-pointer";
 
   return (
-    <section className="py-12 bg-gradient-to-r from-[#EB095F] to-orange-700">
+    <section className="py-12 bg-gradient-to-r from-[#D7263D] to-[#2c497f]">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center xl:flex xl:items-center xl:justify-between xl:text-left">
           <div className="xl:flex xl:items-center xl:justify-start">

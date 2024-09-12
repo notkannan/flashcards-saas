@@ -59,21 +59,22 @@ const ResultPage = () => {
                 <>
                 <Typography variant="h4">Thank you for purchasing</Typography>
                 <Box sx={{mt:22}}>
-                    <Typography variant='h6'>{session_id}</Typography>
-                    <Typography variant='body1'>
+                    <Typography variant='h6'>
                         We have received your payment. You will receive an email with the order details shortly
                     </Typography>
-                    <Button href="/">Return to Home</Button>
+                    <Typography variant='body1'>Session ID: {session_id}</Typography>
+                    <Button href="/" color="#D7263D">Return to Home</Button>
                 </Box>
                 </>
             ):(
                 <>
                 <Typography variant="h4">Payment Failed</Typography>
                     <Box sx={{mt:22}}>
-                        <Typography variant='h6'>{session_id}</Typography>
-                        <Typography variant='body1'>
+                        <Typography variant='h6'>
                             Your payment was not successful. Please try again
                         </Typography>
+                        <Typography variant='body'>Session ID: {session_id}</Typography>
+
                     </Box>
                 </>
             )}

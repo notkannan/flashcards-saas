@@ -56,7 +56,7 @@ export default function Flashcards() {
                     
                 }}
             >
-                Your Saved Collections
+                Your&nbsp;<span className="bg-red-100 text-primary"> Saved </span>&nbsp;Collections
             </Typography>
             <Grid
                 container
