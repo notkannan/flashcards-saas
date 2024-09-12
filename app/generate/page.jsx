@@ -12,6 +12,7 @@ import { CardStack } from "../../components/ui/CardStack"
 import { cn } from "@/lib/utils"
 import { Box, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from '@mui/material'
 import FlashcardsList from "../../components/Flashcards"
+import Link from "next/link"
 
 export default function Generate() {
 
@@ -110,7 +111,12 @@ export default function Generate() {
   }, [user])
 
     const handleSubmit = async () => {
+      if (generationCount >= 3){
+        alert("Please subscribe to Card Flix pro to generate more flashcards")
+        return
+      }
       try {
+        
         // Fetch the user's document
         const userDocRef = doc(collection(db, 'users'), user.id);
         const userDocSnap = await getDoc(userDocRef);
@@ -138,6 +144,7 @@ export default function Generate() {
             setFlashcards(data);
         })  
         await batch.commit()
+        setGenerationCount(prevCount => prevCount + 1)
 
     }catch(err){
       alert("Error generating flashcards")
@@ -243,25 +250,27 @@ export default function Generate() {
   return (
     <div className="w-screen h-screen bg-background">
       <Navbar />
-      <div>
-      <Typography
-        variant='h1' 
-        sx={{ 
-          textAlign: 'center',
-          pt: 2, // Margin-bottom to add space below the heading
-          fontSize: '2.5rem', // Adjust font size as needed
-          color: '#333333', // Dark gray for readability
-          fontWeight: 'bold'
-        }}
-      >Send in a&nbsp;<span className="bg-red-100 text-primary"> prompt </span>&nbsp;to get started.</Typography>
-      {
-      flashcards.length == 0 && 
-      <div className="h-[400px] flex justify-center items-center">
-        <CardStack items={CARDS} />
-      </div>           
-      }
-    </div>
-        {/* <div className="flex flex-col gap-5 justify-center items-center">
+      {isSubscribed || generationCount <= 3 ?
+        <div>
+        <Typography
+          variant='h1' 
+          sx={{ 
+            textAlign: 'center',
+            pt: 2,
+            fontSize: '2.5rem',
+            color: '#333333',
+            fontWeight: 'bold'
+          }}
+        >Send in a&nbsp;<span className="bg-red-100 text-primary">&nbsp;prompt&nbsp;</span>&nbsp;to get started.</Typography>
+        {
+        flashcards.length == 0 && 
+        <div className="h-[400px] flex justify-center items-center">
+          <CardStack items={CARDS} />
+        </div>           
+        }
+        </div>
+        :
+        <div className="flex flex-col gap-5 justify-center items-center">
         <Typography
             variant='h1' 
             sx={{ 
@@ -283,7 +292,7 @@ export default function Generate() {
           <div className="flex items-center gap-7">
             <Link
               href="/#pricing"
-              className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Subscribe
             </Link>
@@ -291,10 +300,8 @@ export default function Generate() {
               Learn more <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </div> */}
-
-
-
+        </div>
+      }
         <FlashcardsList
           flashcards={flashcards}
           flipped={flipped}
@@ -345,5 +352,3 @@ export default function Generate() {
 
   )
 }
-
-
