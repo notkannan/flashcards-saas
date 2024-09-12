@@ -19,7 +19,7 @@ export default function Pricing({buySubscription}) {
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-2xl font-bold tracking-tight text-gray-900">Affordable pricing, great value!</h3>
             <p className="mt-6 text-base leading-7 text-gray-600">
-              With our affordable pricing, learning got easier and much more fun! We'll refund a month's price if you find Cardflix pro less useful
+              With our affordable pricing, learning got easier and much more fun! We&apos;ll refund a month&apos;s price if you find Cardflix pro less useful
             </p>
             <div className="mt-10 flex items-center gap-x-4">
               <h4 className="flex-none text-sm font-semibold leading-6 text-primary">What&apos;s included</h4>
