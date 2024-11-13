@@ -111,7 +111,7 @@ export default function Generate() {
   }, [user])
 
     const handleSubmit = async () => {
-      if (generationCount >= 3){
+      if (generationCount >= 3 && !isSubscribed){
         alert("Please subscribe to Card Flix pro to generate more flashcards")
         return
       }
