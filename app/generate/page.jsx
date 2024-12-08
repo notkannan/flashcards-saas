@@ -147,7 +147,7 @@ export default function Generate() {
         setGenerationCount(prevCount => prevCount + 1)
 
     }catch(err){
-      alert("Error generating flashcards")
+      alert("Please log in to generate flashcards")
     }
   }
 
