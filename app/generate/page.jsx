@@ -179,7 +179,7 @@ export default function Generate() {
         const isSubscribed = userData.subscribed === 'Yes';
         return isSubscribed;
       } else {
-      console.log("No such document!");
+      console.log("Doucument not found!");
       return false;
       }
     } catch (error) {
