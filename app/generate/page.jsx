@@ -319,7 +319,7 @@ export default function Generate() {
             <DialogTitle>Save Flashcards</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Please enter a name for your flashcards collection
+                    Please name your flashcards collection
                 </DialogContentText>
                 <TextField
                     sx={style}            
