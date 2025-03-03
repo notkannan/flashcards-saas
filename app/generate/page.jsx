@@ -321,6 +321,7 @@ export default function Generate() {
                 <DialogContentText>
                     Please name your flashcards collection
                 </DialogContentText>
+                
                 <TextField
                     sx={style}            
                     autofocus 
